@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=0.0.1
+Name=Dockerized Brave
+Comment=A Dockerized Brave Web Browser
+GenericName=dbrave
+Exec=HOME/.local/bin/dbrave
+Path=HOME/.local/bin
+Terminal=false
+Type=Application
+Icon=HOME/.local/share/icons/hicolor/512x512/apps/dbrave-logo.png
+StartupNotify=true
+Categories=Utility;Application;
