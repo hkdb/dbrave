@@ -73,6 +73,7 @@ $ sudo apt upgrade
 
 ## CHANGE
 
+- 03082022 - Added OpenVPN
 - 02032022 - Initial commit
 
 ## REFERENCES

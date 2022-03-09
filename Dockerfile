@@ -27,6 +27,7 @@ RUN apt-get install -y gnupg \
 			libxss1 \
 			libasound2 \
          alsa-utils \
+         openvpn \
          sudo
 
 RUN curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
