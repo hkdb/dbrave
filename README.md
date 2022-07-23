@@ -26,7 +26,7 @@ The install script will automatically launch Brave. After you close the browser,
 This installation script does the following:
 
 1. Build the container image according to your host environment/user and container user password input. Note* `You are setting your password here so that you can use sudo to update the container from within later.`
-2. Creates volumes for easy file access after downloading files with this browser
+2. Creates volume for easy file access after downloading files with this browser
 3. Launches containerized Brave Browser
 4. Optionally install launcher shortcut for Gnome DE
    - copies icon to ~/.local/share/icons/hicolor/512x512/apps
@@ -45,14 +45,13 @@ Create HomeDir Volumes:
 
 ```
 mkdir -p ~/Containers/dbrave/home
-mkdir -p ~/Containers/dbrave/downloads
 docker volume create --driver local --opt type=none --opt device=~/Containers/dbrave/home --opt o=bind dbrave-home
 ```
 
 Initial Run:
 
 ```
-docker run -d --name dbrave --hostname dbrave --user $USER -v dbrave-home:/home/$USER -v $HOME/Containers/dbrave/downloads:/home/$USER/Downloads -v /tmp/.X11-unix:/tmp/.X11-unix --security-opt seccomp=./brave.json -e DISPLAY=unix$DISPLAY --device /dev/dri -v /dev/shm:/dev/shm --device /dev/snd local/dbrave:v0.01
+docker run -d --name dbrave --hostname dbrave --user $USER --dns="1.1.1.1" --cap-add=NET_ADMIN --device=/dev/net/tun -v dbrave-home:/home/$USER -v /tmp/.X11-unix:/tmp/.X11-unix --security-opt seccomp=./brave.json -e DISPLAY=unix$DISPLAY --device /dev/dri -v /dev/shm:/dev/shm --device /dev/snd local/dbrave:v0.01
 ```
 
 To launch it after you closed the initial run:
@@ -63,7 +62,7 @@ docker start dbrave
 
 ## OpenVPN
 
-There are many ways to accomplish this including manually executing the openvpn command inside the container. What I usually do is put a script along with associating credentials into a VPN folder in the homedir and then just using a simple alias to kick off the VPNs.
+There are many ways to accomplish this including manually executing the openvpn command inside the container. What I usually do is put a script along with associating ovpn & creds files into a VPN folder in the homedir and then just using a simple alias on the host to kick off the VPNs.
 
 ## UPDATING
 
@@ -77,6 +76,7 @@ $ sudo apt upgrade
 
 ## CHANGE
 
+- 07232022 - Switched to 20.04 to avoid privileged & removed dl dir
 - 07232022 - Added install steps to support OpenVPN
 - 03082022 - Added OpenVPN
 - 02032022 - Initial commit

@@ -19,13 +19,6 @@ fi
 echo -e "\nCreating $DBRAVE_HOME...\n"
 mkdir -p $DBRAVE_HOME
 
-read -p 'Where do you want the container Downloads volume to be? (press enter for default: ~/Containers/dbrave/downloads): ' DBRAVE_DL
-if [ "$DBRAVE_DL" = "" ]; then
-   DBRAVE_DL="$HOME/Containers/dbrave/downloads"
-fi
-echo -e "\nCreating $DBRAVE_DL... Files you download from this Brave instance will reside here...\n"
-mkdir -p $DBRAVE_DL
-
 if [ "$(docker volume ls -f name=$1 | awk '{print $NF}' | grep 'dbrave-home')" ]; then
    echo -e "\nVolume dbrave-home already exists. Skipping creation...\n"
 else
@@ -34,7 +27,7 @@ else
 fi
 
 echo -e "\nLaunching container...\n"
-docker run -d --name dbrave --hostname dbrave --user $USER --dns="1.1.1.1" --cap-add=NET_ADMIN --device=/dev/net/tun -v dbrave-home:/home/$USER -v $DBRAVE_DL:/home/$USER/Downloads -v /tmp/.X11-unix:/tmp/.X11-unix --security-opt seccomp=./brave.json -e DISPLAY=unix$DISPLAY --device /dev/dri -v /dev/shm:/dev/shm --device /dev/snd local/dbrave:v0.01
+docker run -d --name dbrave --hostname dbrave --user $USER --dns="1.1.1.1" --cap-add=NET_ADMIN --device=/dev/net/tun -v dbrave-home:/home/$USER -v /tmp/.X11-unix:/tmp/.X11-unix --security-opt seccomp=./brave.json -e DISPLAY=unix$DISPLAY --device /dev/dri -v /dev/shm:/dev/shm --device /dev/snd local/dbrave:v0.01
 
 echo -e "\nCompleted... If all went well, you should see a Brave browser popping up. To launch it again after you close it, simply type \"docker start dbrave\"...\n"
 

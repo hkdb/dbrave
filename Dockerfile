@@ -2,7 +2,7 @@
 # Brave Browser Container
 #
 
-FROM ubuntu:21.04
+FROM ubuntu:20.04
 MAINTAINER hkdb <hkdb@3df.io>
 
 # Set username ENV
