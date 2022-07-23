@@ -5,7 +5,7 @@ maintained by: hkdb <hkdb@3df.io>
 
 ## SUMMARY
 
-A dockerized instance of Brave browser running as a non-root user. Useful when "a separate sandboxed environment for testing" or "added security for browsing sites that are questionable" is needed.
+A dockerized instance of Brave browser running as a non-root user. Useful when "a separate sandboxed environment for testing" or "added security for browsing sites that are questionable" is needed. It's also useful if you would like to have an independant browser that's permanently connected to a VPN without interfering with the rest of the host's networking.
 
 ## SUPPORT PLATFORMS
 
@@ -61,6 +61,10 @@ To launch it after you closed the initial run:
 docker start dbrave
 ```
 
+## OpenVPN
+
+There are many ways to accomplish this including manually executing the openvpn command inside the container. What I usually do is put a script along with associating credentials into a VPN folder in the homedir and then just using a simple alias to kick off the VPNs.
+
 ## UPDATING
 
 You can simply update the container without rebuilding the image by executing the following:
@@ -73,6 +77,7 @@ $ sudo apt upgrade
 
 ## CHANGE
 
+- 07232022 - Added install steps to support OpenVPN
 - 03082022 - Added OpenVPN
 - 02032022 - Initial commit
 

@@ -34,7 +34,7 @@ else
 fi
 
 echo -e "\nLaunching container...\n"
-docker run -d --name dbrave --hostname dbrave --user $USER -v dbrave-home:/home/$USER -v $DBRAVE_DL:/home/$USER/Downloads -v /tmp/.X11-unix:/tmp/.X11-unix --security-opt seccomp=./brave.json -e DISPLAY=unix$DISPLAY --device /dev/dri -v /dev/shm:/dev/shm --device /dev/snd local/dbrave:v0.01
+docker run -d --name dbrave --hostname dbrave --user $USER --dns="1.1.1.1" --cap-add=NET_ADMIN --device=/dev/net/tun -v dbrave-home:/home/$USER -v $DBRAVE_DL:/home/$USER/Downloads -v /tmp/.X11-unix:/tmp/.X11-unix --security-opt seccomp=./brave.json -e DISPLAY=unix$DISPLAY --device /dev/dri -v /dev/shm:/dev/shm --device /dev/snd local/dbrave:v0.01
 
 echo -e "\nCompleted... If all went well, you should see a Brave browser popping up. To launch it again after you close it, simply type \"docker start dbrave\"...\n"
 
