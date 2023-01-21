@@ -1,1 +1,6 @@
 docker build --build-arg USER=$USER --build-arg PASS="Trinity@123" -t local/dbrave:v0.01 .
+
+
+HOME : /workspaces/dockerapps/brave
+Download : /workspaces/dockerapps/downloads
+
