@@ -9,19 +9,26 @@
 echo -e "\n"
 read -sp 'Enter a password for your container user: ' DBRAVE_PASS
 
+
+echo -e "\n"
+read -p 'Enter  container name (eg: dbrave-spring ): ' CONTAINER_NAME
+
+echo -e "\n"
+read -p 'Enter  container name (eg: prof ): ' HOST_NAME
+
 echo -e "\nBuilding container image..."
 docker build --build-arg USER=$USER --build-arg PASS=$DBRAVE_PASS --rm -t debian/dbrave:v0.01 .
 
-read -p 'Where do you want the container HOME volume to be? (press enter for default: ~/Containers/dbrave/home): ' DBRAVE_HOME
+read -p 'Where do you want the container HOME volume to be? (press enter for default: ~/Containers/$CONTAINER_NAME/home): ' DBRAVE_HOME
 if [ "$DBRAVE_HOME" = "" ]; then
-   DBRAVE_HOME="$HOME/Containers/dbrave/home"
+   DBRAVE_HOME="$HOME/Containers/$CONTAINER_NAME/home"
 fi
 echo -e "\nCreating $DBRAVE_HOME...\n"
 mkdir -p $DBRAVE_HOME
 
-read -p 'Where do you want the container Downloads volume to be? (press enter for default: ~/Containers/dbrave/downloads): ' DBRAVE_DL
+read -p 'Where do you want the container Downloads volume to be? (press enter for default: ~/Containers/$CONTAINER_NAME/downloads): ' DBRAVE_DL
 if [ "$DBRAVE_DL" = "" ]; then
-   DBRAVE_DL="$HOME/Containers/dbrave/downloads"
+   DBRAVE_DL="$HOME/Containers/$CONTAINER_NAME/downloads"
 fi
 echo -e "\nCreating $DBRAVE_DL... Files you download from this Brave instance will reside here...\n"
 mkdir -p $DBRAVE_DL
@@ -34,7 +41,7 @@ else
 fi
 
 echo -e "\nLaunching container...\n"
-docker run -d --name dbrave --hostname dbrave --user $USER -v dbrave-home:/home/$USER -v $DBRAVE_DL:/home/$USER/Downloads -v /tmp/.X11-unix:/tmp/.X11-unix --security-opt seccomp=./brave.json -e DISPLAY=unix$DISPLAY --device /dev/dri -v /dev/shm:/dev/shm --device /dev/snd debian/dbrave:v0.01
+docker run -d --name $CONTAINER_NAME --hostname $HOST_NAME --user $USER -v dbrave-home:/home/$USER -v $DBRAVE_DL:/home/$USER/Downloads -v /tmp/.X11-unix:/tmp/.X11-unix --security-opt seccomp=./brave.json -e DISPLAY=unix$DISPLAY --device /dev/dri -v /dev/shm:/dev/shm --device /dev/snd joel9vvs/dbrave:v0.01
 
 echo -e "\nCompleted... If all went well, you should see a Brave browser popping up. To launch it again after you close it, simply type \"docker start dbrave\"...\n"
 
@@ -56,8 +63,8 @@ if [ "$GL" = "Y" ] || [ "$GL" = "y" ] || [ "$GL" = "" ]; then
       mkdir -p $HOME/.local/bin
    fi
    cp dbrave-logo.png $HOME/.local/share/icons/hicolor/512x512/apps/
-   sed 's|HOME|'$HOME'|g' dBrave.desktop.skel > dBrave.desktop
-   mv dBrave.desktop $HOME/.local/share/applications/
+   sed 's|HOME|'$HOME'|g' dBrave.desktop.skel > $CONTAINER_NAME.desktop
+   mv $CONTAINER_NAME.desktop $HOME/.local/share/applications/
    cp dbrave $HOME/.local/bin/
 elif [ "$GL" = "N" ] || [ "$GL" = "n" ]; then 
    echo -e "\nSkipping installation of Gnome launcher shortcut...\n"
