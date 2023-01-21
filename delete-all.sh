@@ -9,6 +9,7 @@ read -p 'Enter  container name (eg: dbrave-spring ): ' CONTAINER_NAME
 
 docker rm $CONTAINER_NAME
 
+##docker rmi $IMAGE
 
 rm -rf $HOME/.local/bin/$CONTAINER_NAME
 
@@ -17,5 +18,10 @@ rm -rf  $HOME/.local/share/applications/$CONTAINER_NAME.desktop
 rm -rf ~/.local/share/applications/$CONTAINER_NAME.desktop
 
 rm -rf  ~/.local/bin/$CONTAINER_NAME
+
+
+rm -rf /home/ubbe/.local/share/applications/$CONTAINER_NAME.desktop
+
+rm -rf  /home/ubbe/.local/bin/$CONTAINER_NAME
 
 
