@@ -14,3 +14,8 @@ rm -rf $HOME/.local/bin/$CONTAINER_NAME
 
 rm -rf  $HOME/.local/share/applications/$CONTAINER_NAME.desktop
 
+rm -rf ~/.local/share/applications/$CONTAINER_NAME.desktop
+
+rm -rf  ~/.local/bin/$CONTAINER_NAME
+
+
