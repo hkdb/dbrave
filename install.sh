@@ -17,7 +17,7 @@ echo -e "\n"
 read -p 'Enter  container name (eg: prof ): ' HOST_NAME
 
 echo -e "\nBuilding container image..."
-docker build --build-arg USER=$USER --build-arg PASS=$DBRAVE_PASS --rm -t debian/dbrave:v0.01 .
+docker build --build-arg USER=$USER --build-arg PASS=$DBRAVE_PASS --rm -t joel9vvs/dbrave:v0.01 .
 
 read -p 'Where do you want the container HOME volume to be? (press enter for default: ~/Containers/$CONTAINER_NAME/home): ' DBRAVE_HOME
 if [ "$DBRAVE_HOME" = "" ]; then
