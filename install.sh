@@ -63,7 +63,7 @@ if [ "$GL" = "Y" ] || [ "$GL" = "y" ] || [ "$GL" = "" ]; then
       mkdir -p $HOME/.local/bin
    fi
    cp dbrave-logo.png $HOME/.local/share/icons/hicolor/512x512/apps/
-   sed 's|HOME|'$HOME'|g' dBrave.desktop.skel > $CONTAINER_NAME.desktop
+   sed 's|HOME|'$HOME'|g; s|BRAVED|'$CONTAINER_NAME'|g; s|MYPROFILE|'$HOST_NAME'|g'  dBrave.desktop.skel > $CONTAINER_NAME.desktop
    mv $CONTAINER_NAME.desktop $HOME/.local/share/applications/
    cp dbrave $HOME/.local/bin/$CONTAINER_NAME
 elif [ "$GL" = "N" ] || [ "$GL" = "n" ]; then 
