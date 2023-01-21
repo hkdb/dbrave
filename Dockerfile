@@ -2,7 +2,9 @@
 # Brave Browser Container
 #
 
-FROM ubuntu:20.04
+#FROM ubuntu:20.04
+#FROM debian
+FROM debian:buster-slim
 MAINTAINER hkdb <hkdb@3df.io>
 
 # Set username ENV
