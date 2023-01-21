@@ -4,3 +4,5 @@ docker build --build-arg USER=$USER --build-arg PASS="Trinity@123" -t local/dbra
 HOME : /workspaces/dockerapps/brave
 Download : /workspaces/dockerapps/downloads
 
+ll
+
