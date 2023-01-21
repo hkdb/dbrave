@@ -38,7 +38,7 @@ This installation script does the following:
 Build:
 
 ```
-docker build --build-arg USER=$USER --build-arg PASS=<password of your choice> -t local/dbrave:v0.01 .
+docker build --build-arg USER=$USER --build-arg PASS=<password of your choice> -t debian/dbrave:v0.01 .
 ```
 
 Create HomeDir Volumes:
@@ -52,7 +52,7 @@ docker volume create --driver local --opt type=none --opt device=~/Containers/db
 Initial Run:
 
 ```
-docker run -d --name dbrave --hostname dbrave --user $USER -v dbrave-home:/home/$USER -v $HOME/Containers/dbrave/downloads:/home/$USER/Downloads -v /tmp/.X11-unix:/tmp/.X11-unix --security-opt seccomp=./brave.json -e DISPLAY=unix$DISPLAY --device /dev/dri -v /dev/shm:/dev/shm --device /dev/snd local/dbrave:v0.01
+docker run -d --name dbrave --hostname dbrave --user $USER -v dbrave-home:/home/$USER -v $HOME/Containers/dbrave/downloads:/home/$USER/Downloads -v /tmp/.X11-unix:/tmp/.X11-unix --security-opt seccomp=./brave.json -e DISPLAY=unix$DISPLAY --device /dev/dri -v /dev/shm:/dev/shm --device /dev/snd debian/dbrave:v0.01
 ```
 
 To launch it after you closed the initial run:
