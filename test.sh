@@ -19,3 +19,4 @@ read -p 'Would you like to add a shortcut to Gnome Launcher? (Y/n): ' GL
 
 git reset --hard && git clean -df &&  git pull
 
+##testing
