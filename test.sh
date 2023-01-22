@@ -15,3 +15,7 @@ sed  's|HOME|'$HOME'|g; s|BRAVED|'$CONTAINER_NAME'|g'  dBrave.desktop.skel > $CO
 
 echo -e "\n"
 read -p 'Would you like to add a shortcut to Gnome Launcher? (Y/n): ' GL
+
+
+git reset --hard && git pull
+
