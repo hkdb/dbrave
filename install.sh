@@ -66,7 +66,7 @@ if [ "$GL" = "Y" ] || [ "$GL" = "y" ] || [ "$GL" = "" ]; then
    sed 's|HOME|'$HOME'|g; s|BRAVED|'$CONTAINER_NAME'|g; s|MYPROFILE|'$HOST_NAME'|g'  dBrave.desktop.skel > $CONTAINER_NAME.desktop
    mv $CONTAINER_NAME.desktop $HOME/.local/share/applications/
 
-   sed 's|HOME|'$HOME'|g; s|BRAVED|'$CONTAINER_NAME'|g; s|MYPROFILE|'$HOST_NAME'|g'  dBrave > $CONTAINER_NAME
+   sed 's|HOME|'$HOME'|g; s|BRAVED|'$CONTAINER_NAME'|g; s|MYPROFILE|'$HOST_NAME'|g'  dbrave > $CONTAINER_NAME
    cp $CONTAINER_NAME $HOME/.local/bin/$CONTAINER_NAME
    
 elif [ "$GL" = "N" ] || [ "$GL" = "n" ]; then 
